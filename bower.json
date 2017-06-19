@@ -1,0 +1,20 @@
+{
+  "name": "Contacts-App-Polymer",
+  "authors": [
+    "Amanshu Kataria <amanshukataria@hotmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "app-layout": "PolymerElements/app-layout#^2.0.0"
+  }
+}
