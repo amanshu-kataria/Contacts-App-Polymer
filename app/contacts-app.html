@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
 <link rel="import" href="../bower_components/app-layout/app-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
@@ -54,18 +55,22 @@
         <div main-title spacer>Contacts App</div>
       </app-toolbar>
     </app-header>
-      <vaadin-grid items='[{"name": "John", "surname": "Lennon", "role": "singer"}, {"name": "Ringo", "surname": "Starr", "role": "drums"}]'>
+      <vaadin-grid items='[[contacts]]'>
         <vaadin-grid-column>
           <template class="header">Name</template>
           <template>[[item.name]]</template>
         </vaadin-grid-column>
         <vaadin-grid-column>
-          <template class="header">Surname</template>
-          <template>[[item.surname]]</template>
+          <template class="header">Email</template>
+          <template>[[item.email]]</template>
         </vaadin-grid-column>
         <vaadin-grid-column>
-          <template class="header">Role</template>
-          <template>[[item.role]]</template>
+          <template class="header">Company</template>
+          <template>[[item.company]]</template>
+        </vaadin-grid-column>
+        <vaadin-grid-column>
+          <template class="header">Phone</template>
+          <template>[[item.phone]]</template>
         </vaadin-grid-column>
       </vaadin-grid>
     <paper-fab raised icon="add" on-tap="openDialog"></paper-fab>
@@ -75,29 +80,66 @@
           <div main-title>Create contact</div>
         </app-toolbar>
       </app-header>
-      <paper-input class="_input" auto-validate required pattern="^[a-zA-Z\s]+$" label="Name">
+      <paper-input class="_input" id="_name" on-value-changed="onInputChange" auto-validate autofocus required allowed-pattern="^[a-zA-Z\s]+$"char-counter maxlength="45" label="Name">
         <iron-icon icon="social:person" slot="prefix"></iron-icon>
       </paper-input>
-      <paper-input class="_input" auto-validate required pattern="^[a-zA-Z\s]+$" label="Company">
+      <paper-input class="_input" id="_company" on-value-changed="onInputChange" auto-validate required char-counter maxlength="45" allowed-pattern="^[a-zA-Z\s]+$" label="Company">
         <iron-icon icon="home" slot="prefix"></iron-icon>
       </paper-input>
-      <paper-input class="_input" auto-validate required pattern="" label="Email">
+      <paper-input class="_input" id="_email" on-value-changed="onInputChange" auto-validate char-counter maxlength="45" required type="email" label="Email">
         <iron-icon icon="mail" slot="prefix"></iron-icon>
       </paper-input>
-      <paper-input class="_input" auto-validate required pattern="" label="Phone">
+      <paper-input class="_input" id="_phone" on-value-changed="onInputChange" auto-validate required char-counter maxlength="10" type="number" label="Phone">
         <iron-icon icon="notification:phone-in-talk" slot="prefix"></iron-icon>
       </paper-input>
       <div class="buttons">
+        <paper-button dialog-confirm disabled="[[disabled]]" on-tap="createContact">Submit</paper-button>
         <paper-button dialog-confirm autofocus>close</paper-button>
       </div>
     </paper-dialog>
   </template>
   <script>
-    class ContactsApp extends Polymer.Element{
+    class ContactsApp extends  Polymer.GestureEventListeners(Polymer.Element){
       static get is(){return 'contacts-app'; }
+      static get properties(){
+        return{
+          contacts: {
+            type: Array,
+            value(){
+              return [
+              ];
+            }
+          },
+          disabled:{
+            type: Boolean,
+            value: true
+          }
+        };
+      }
+      onInputChange(){
+        if((this.$._name.value === "") && (this.$._email.value === "") && (this.$._company.value === "") && (this.$._phone.value === ""))
+          this.disabled=true;
+        else {
+          this.disabled=false;
+        }
+      }
+
       openDialog() {
 				this.$.modal.open();
 			}
+
+      createContact(){
+        this.push(
+          'contacts',
+          {
+            "name": this.$._name.value,
+            "company": this.$._company.value,
+            "email": this.$._email.value,
+            "phone": this.$._phone.value
+            }
+        );
+        this.$._name.value = this.$._email.value = this.$._company.value = this.$._phone.value = null;
+      }
     }
     customElements.define(ContactsApp.is,ContactsApp);
   </script>
