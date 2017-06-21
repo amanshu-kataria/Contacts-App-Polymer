@@ -54,20 +54,20 @@
         <div main-title spacer>Contacts App</div>
       </app-toolbar>
     </app-header>
-    <vaadin-grid items='[{"name": "John", "surname": "Lennon", "role": "singer"}, {"name": "Ringo", "surname": "Starr", "role": "drums"}]'>
-      <vaadin-grid-column>
-        <template class="header">Name</template>
-        <template>[[item.name]]</template>
-      </vaadin-grid-column>
-      <vaadin-grid-column>
-        <template class="header">Surname</template>
-        <template>[[item.surname]]</template>
-      </vaadin-grid-column>
-      <vaadin-grid-column>
-        <template class="header">Role</template>
-        <template>[[item.role]]</template>
-      </vaadin-grid-column>
-    </vaadin-grid>
+      <vaadin-grid items='[{"name": "John", "surname": "Lennon", "role": "singer"}, {"name": "Ringo", "surname": "Starr", "role": "drums"}]'>
+        <vaadin-grid-column>
+          <template class="header">Name</template>
+          <template>[[item.name]]</template>
+        </vaadin-grid-column>
+        <vaadin-grid-column>
+          <template class="header">Surname</template>
+          <template>[[item.surname]]</template>
+        </vaadin-grid-column>
+        <vaadin-grid-column>
+          <template class="header">Role</template>
+          <template>[[item.role]]</template>
+        </vaadin-grid-column>
+      </vaadin-grid>
     <paper-fab raised icon="add" on-tap="openDialog"></paper-fab>
     <paper-dialog id="modal" class="modal_window" modal>
       <app-header class="modal_header">

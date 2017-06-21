@@ -24,7 +24,6 @@
     "paper-button": "PolymerElements/paper-button#^2.0.0",
     "paper-input": "PolymerElements/paper-input#^2.0.1",
     "iron-icon": "PolymerElements/iron-icon#^2.0.0",
-    "paper-datatable-api": "RoXuS/paper-datatable-api#^2.0.1",
-    "vaadin-grid": "vaadin/vaadin-grid#^2.0.3"
+    "vaadin-grid": "vaadin/vaadin-grid#v3.0.0-alpha2"
   }
 }
