@@ -80,16 +80,16 @@
           <div main-title>Create contact</div>
         </app-toolbar>
       </app-header>
-      <paper-input class="_input" id="_name" on-value-changed="onInputChange" auto-validate autofocus required allowed-pattern="^[a-zA-Z\s]+$"char-counter maxlength="45" label="Name">
+      <paper-input class="_input" id="_name" on-value-changed="onInputChange" auto-validate autofocus required allowed-pattern="^[a-zA-Z\s]+$" maxlength="45" label="Name">
         <iron-icon icon="social:person" slot="prefix"></iron-icon>
       </paper-input>
-      <paper-input class="_input" id="_company" on-value-changed="onInputChange" auto-validate required char-counter maxlength="45" allowed-pattern="^[a-zA-Z\s]+$" label="Company">
+      <paper-input class="_input" id="_company" on-value-changed="onInputChange" auto-validate required maxlength="45" allowed-pattern="^[a-zA-Z\s]+$" label="Company">
         <iron-icon icon="home" slot="prefix"></iron-icon>
       </paper-input>
-      <paper-input class="_input" id="_email" on-value-changed="onInputChange" auto-validate char-counter maxlength="45" required type="email" label="Email">
+      <paper-input class="_input" id="_email" on-value-changed="onInputChange" auto-validate maxlength="45" required type="email" label="Email">
         <iron-icon icon="mail" slot="prefix"></iron-icon>
       </paper-input>
-      <paper-input class="_input" id="_phone" on-value-changed="onInputChange" auto-validate required char-counter maxlength="10" type="number" label="Phone">
+      <paper-input class="_input" id="_phone" on-value-changed="onInputChange" auto-validate required maxlength="10" allowed-pattern="^[0-9]+$" label="Phone">
         <iron-icon icon="notification:phone-in-talk" slot="prefix"></iron-icon>
       </paper-input>
       <div class="buttons">
@@ -136,9 +136,13 @@
             "company": this.$._company.value,
             "email": this.$._email.value,
             "phone": this.$._phone.value
-            }
+          }
         );
         this.$._name.value = this.$._email.value = this.$._company.value = this.$._phone.value = null;
+        this.$._name.invalid = false;
+        this.$._email.invalid = false;
+        this.$._company.invalid = false;
+        this.$._phone.invalid = false;
       }
     }
     customElements.define(ContactsApp.is,ContactsApp);
