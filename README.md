@@ -12,11 +12,13 @@ Bower requires Node.js and npm, so install [node.js](https://nodejs.org/en/).
 3. **Install Bower**
 
 Open git bash or command prompt and run the following npm command:
+
 `npm install -g bower`
 
 4. **Install Polymer CLI**
 
 Install [Polymer CLI](https://www.polymer-project.org/2.0/docs/tools/polymer-cli) by running the following npm command:
+
 `npm install -g polymer-cli`
 
 ## Install the dependencies and run the application
